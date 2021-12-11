@@ -14,9 +14,15 @@ COPY . /app/
 WORKDIR /app
 
 # Install the Python libraries
-RUN pip3 install --no-cache-dir -r requirements.txt
+# RUN pip3 install --no-cache-dir -r requirements.txt
+# install dependencies
+RUN pip install --upgrade pip
+# COPY ./requirements.txt /app/requirements.txt
+RUN pip install -r requirements.txt
 
 EXPOSE 5000
 
+RUN chmod +x entrypoint.sh
+
 # run entrypoint.sh
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]
