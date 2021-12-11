@@ -22,18 +22,22 @@ cli = FlaskGroup(app)
 
 @cli.command("create_db")
 def create_db():
-    # try:
-    db.drop_all()
-    db.create_all()
-    db.session.commit()
-    print("tables created")
-    # except:
-    #     print("creating tables failed")
+    try:
+        db.drop_all()
+        db.create_all()
+        db.session.commit()
+        print("tables created")
+    except:
+        print("creating tables failed")
 
 @cli.command("seed_db")
 def seed_db():
     try:
-        db.session.add(Event(name="Seminar"))
+        db.session.add_all([
+            Event(name="Seminar"),
+            Event(name="Workshop"),
+            Event(name="Conferences"),
+        ])
         db.session.commit()
         print("data seeded")
     except:

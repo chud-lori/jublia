@@ -62,11 +62,15 @@ P.S. Currently not working, please run locally without docker
 
 ```bash
 docker-compose up -d --build
-docker start app
-docker-compose exec web python manage.py create_db
 ```
 
 App running on `localhost:5000`. You can check curl.sh to access di API
+
+## Post data with curl
+
+```bash
+curl -X POST -H "Content-Type: application/json"  http://localhost:5000/save_emails --data '{"event_id": "1", "email_subject": "A good seminar", "email_content": "You should come to this seminar", "timestamp": "2021-12-14 20:02:00"}'
+```
 
 ## Contributing
 
