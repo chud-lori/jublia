@@ -14,7 +14,7 @@ def post_email():
         required = ["event_id", "email_subject", "email_content", "timestamp"]
         for req in required:
             if req not in request.json:
-                return jsonify({"message": f"failed, {req} is required"}), 400
+                return jsonify({"message": f"failed, {req} is required", "status": 0}), 400
         email = Email(
             event_id=request.json["event_id"],
             email_subject=request.json["email_subject"],
