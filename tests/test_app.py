@@ -1,6 +1,5 @@
 import json
 import pytest
-from werkzeug.wrappers import response
 from app import create_app
 
 app = create_app()

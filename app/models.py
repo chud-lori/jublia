@@ -31,7 +31,6 @@ class Email(db.Model):
 
     def __repr__(self):
         return '<Email subject {}>'.format(self.email_subject)
-        # return {'name': self.name, 'username': self.username, 'gender': self.gender.value, 'birthdate': birthdate}
 
 
 class Recipient(db.Model):

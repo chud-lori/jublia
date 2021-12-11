@@ -10,6 +10,7 @@
 - Create an virtual enviroment and make sure to run inside it
 - Run `pip install -r requirements.txt` to install the dependencies
 - create database named `jublia`
+- Run redis in port 6379
 
 ## Set Up environment variables (Linux)
 

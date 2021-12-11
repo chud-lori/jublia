@@ -26,6 +26,7 @@ services:
       - ./:/app
     environment:
         - FLASK_DEBUG=1
+        - TZ=Asia/Singapore
   db:
     image: postgres:11-alpine
     container_name: db_app
@@ -36,6 +37,8 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=jublia
       - POSTGRES_HOST_AUTH_METHOD=trust
+      - TZ=Asia/Singapore
+      - PGTZ=Asia/Singapore
     networks:
       - default
     ports:
