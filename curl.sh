@@ -1,2 +1,2 @@
-curl -X POST -H "Content-Type: application/json"  http://localhost:5000/save_emails --data '{"event_id": "2", "email_subject": "Subjek sagd emailnya", "email_content": "Konten emailnya 3", "timestamp": "2021-12-11 15:52:00"}'
+curl -X POST -H "Content-Type: application/json"  http://localhost:5000/save_emails --data '{"event_id": "1", "email_subject": "A good seminar", "email_content": "You should come to this seminar", "timestamp": "2021-12-14 20:02:00"}'
 curl -X GET -H "Content-Type: application/json"  http://localhost:5000/test

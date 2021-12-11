@@ -32,7 +32,7 @@ Set for development mode
 python manage.py create_db
 ```
 
-## Run the celery
+## Run the scheduler
 
 ```bash
 celery -A app.celeryconf.celery worker --loglevel=INFO --detach --pidfile=''
@@ -66,11 +66,15 @@ docker-compose up -d --build
 
 App running on `localhost:5000`. You can check curl.sh to access di API
 
-## Post data with curl
+## Post email with curl
 
 ```bash
 curl -X POST -H "Content-Type: application/json"  http://localhost:5000/save_emails --data '{"event_id": "1", "email_subject": "A good seminar", "email_content": "You should come to this seminar", "timestamp": "2021-12-14 20:02:00"}'
 ```
+
+## Scheduler
+
+The scheduler will run every 4 seconds and check if any email need to send on the time based on the `timestamp` data in database, email sent simulates by updating `status` field in `emails` table from `Unsend` to `sent`
 
 ## Contributing
 
