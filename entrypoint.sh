@@ -12,11 +12,12 @@ then
 fi
 
 python manage.py create_db
+python manage.py seed_db
 # Run Celery worker
-celery -A app.celeryconf worker --loglevel=INFO --detach --pidfile=''
+celery -A app.celeryconf.celery worker --loglevel=INFO --detach --pidfile=''
 
 # Run Celery Beat
-celery -A app.celeryconf beat --loglevel=INFO --detach --pidfile=''
+celery -A app.celeryconf.celery beat --loglevel=INFO --detach --pidfile=''
 
 exec "$@"
 

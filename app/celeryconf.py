@@ -72,9 +72,7 @@ def send_email():
     nw = datetime.now()
     nw = nw.replace(second=0, microsecond=0)
     for row in result:
-        print(row)
         row_timestamp = row[4].replace(second=0, microsecond=0)
-        print(f"nw: {nw} rt: {row_timestamp}")
         if nw == row_timestamp:
             print(row_timestamp)
             up = Email.query.filter_by(id=row[0]).first()
@@ -84,7 +82,4 @@ def send_email():
                 print(f"{up.id} sent")
             except:
                 print(f"{up} update failed")
-            # print(f"Ini sama: {i}")
-    # print(nw == times[1])
-    # print(tt)
     print("Nothing to send")

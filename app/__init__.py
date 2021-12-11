@@ -13,24 +13,15 @@ from celery import Celery
 
 # db = connect_db()
 db = SQLAlchemy()
-celery = Celery(broker="redis://localhost:6379/0",backend="redis://localhost:6379/0")
+celery = Celery(broker=Config.CELERY_BROKER_URL,backend=Config.CELERY_RESULT_BACKEND)
 
 # Connect Redis db
 redis_db = redis.Redis(
-    host="localhost", port="6379", db=1, charset="utf-8", decode_responses=True
+    host=Config.REDIS_HOST, port=Config.REDIS_PORT, db=1, charset="utf-8", decode_responses=True
 )
 
 # Initialize timer in redis
 redis_db.mset({"minute": 0, "second": 0})
-
-# Add periodic tasks
-# celery_beat_schedule = {
-#     "time_scheduler": {
-#         "task": "timer_app",
-#         # Run every second
-#         "schedule": 1.0,
-#     }
-# }
 
 def create_app(config=Config):
     """

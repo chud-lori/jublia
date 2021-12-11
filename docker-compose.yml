@@ -26,8 +26,6 @@ services:
       - ./:/app
     environment:
         - FLASK_DEBUG=1
-        - FLASK_APP=manage.py
-        - FLASK_ENV=development
   db:
     image: postgres:11-alpine
     container_name: db_app

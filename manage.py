@@ -14,7 +14,7 @@ run from python using flask run
 from flask.cli import FlaskGroup
 
 from app import db, create_app
-# from app.models import Employee
+from app.models import Event
 
 app = create_app()
 cli = FlaskGroup(app)
@@ -30,14 +30,14 @@ def create_db():
     # except:
     #     print("creating tables failed")
 
-# @cli.command("seed_db")
-# def seed_db():
-#     try:
-#         db.session.add(Employee(name="admin", username="admin", password="admin11132", gender="female", birthdate="2021-01-01"))
-#         db.session.commit()
-#         print("data seeded")
-#     except:
-#         print("seed failed")
+@cli.command("seed_db")
+def seed_db():
+    try:
+        db.session.add(Event(name="Seminar"))
+        db.session.commit()
+        print("data seeded")
+    except:
+        print("seed failed")
 
 
 if __name__ == "__main__":

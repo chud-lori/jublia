@@ -10,5 +10,7 @@ class Config(object):
     DB = 'jublia'
     SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", "postgresql+psycopg2://postgres:postgres@localhost:5432/jublia")
     SQLALCHEMY_TRACK_MODIFICATIONS = True
-    CELERY_BROKER_URL = os.getenv("REDIS_HOST", "redis://localhost:6379/0")
-    CELERY_RESULT_BACKEND = os.getenv("REDIS_HOST", "redis://localhost:6379/0")
+    REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
+    REDIS_PORT = os.getenv("REDIS_PORT", "6379")
+    CELERY_BROKER_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
+    CELERY_RESULT_BACKEND = os.getenv("REDIS_URL", "redis://localhost:6379/0")

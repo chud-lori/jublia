@@ -7,6 +7,9 @@ RUN mkdir app
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+# install system dependencies
+RUN apt-get update && apt-get install -y netcat && apt-get -y install cron
+
 # Copy everything to flask folder
 COPY . /app/
 
@@ -22,7 +25,7 @@ RUN pip install -r requirements.txt
 
 EXPOSE 5000
 
-RUN chmod +x entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
 
 # run entrypoint.sh
 ENTRYPOINT ["/app/entrypoint.sh"]

@@ -8,6 +8,9 @@ class Event(db.Model):
     name = db.Column(db.String(255), nullable=False)
     emails = db.relationship('Email', backref='event', lazy=True)
 
+    def __init__(self, name):
+        self.name = name
+
 class Email(db.Model):
     """Model for emails."""
 
