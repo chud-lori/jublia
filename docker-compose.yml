@@ -1,0 +1,44 @@
+version: "3.7"
+
+services:
+  redis:
+    container_name: redis_app
+    image: redis
+    ports:
+      - "6379:6379"
+  app:
+    container_name: app
+    restart: always
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    command: python manage.py run -h 0.0.0.0
+    depends_on:
+        - redis
+        - db
+    networks:
+      - default
+    ports:
+      - 5000:5000
+    env_file:
+      - ./.env
+    volumes:
+      - ./:/app
+    environment:
+        - FLASK_DEBUG=1
+        - FLASK_APP=manage.py
+        - FLASK_ENV=development
+  db:
+    image: postgres:11-alpine
+    container_name: db_app
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=jublia
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    networks:
+      - default
+    ports:
+      - "5436:5432"
