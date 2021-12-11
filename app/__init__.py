@@ -24,13 +24,13 @@ redis_db = redis.Redis(
 redis_db.mset({"minute": 0, "second": 0})
 
 # Add periodic tasks
-celery_beat_schedule = {
-    "time_scheduler": {
-        "task": "timer_app",
-        # Run every second
-        "schedule": 1.0,
-    }
-}
+# celery_beat_schedule = {
+#     "time_scheduler": {
+#         "task": "timer_app",
+#         # Run every second
+#         "schedule": 1.0,
+#     }
+# }
 
 def create_app(config=Config):
     """
@@ -42,17 +42,17 @@ def create_app(config=Config):
     db.init_app(app)
     # Initialize Celery and update its config
     # celery = Celery(app.name)
-    celery.conf.update(
-        result_backend=app.config["CELERY_RESULT_BACKEND"],
-        broker_url=app.config["CELERY_BROKER_URL"],
-        broker=app.config["CELERY_BROKER_URL"],
-        backend=app.config["CELERY_RESULT_BACKEND"],
-        timezone="UTC",
-        task_serializer="json",
-        accept_content=["json"],
-        result_serializer="json",
-        beat_schedule=celery_beat_schedule,
-    )
+    # celery.conf.update(
+    #     result_backend=app.config["CELERY_RESULT_BACKEND"],
+    #     broker_url=app.config["CELERY_BROKER_URL"],
+    #     broker=app.config["CELERY_BROKER_URL"],
+    #     backend=app.config["CELERY_RESULT_BACKEND"],
+    #     timezone="UTC",
+    #     task_serializer="json",
+    #     accept_content=["json"],
+    #     result_serializer="json",
+    #     beat_schedule=celery_beat_schedule,
+    # )
 
     from app.routes import page_not_found
     app.register_error_handler(404, page_not_found)

@@ -17,9 +17,9 @@
 #!/bin/sh
 
 # Run Celery worker
-celery -A app.celery worker --loglevel=INFO --detach --pidfile=''
+celery -A app.celeryconf worker --loglevel=INFO --detach --pidfile=''
 
 # Run Celery Beat
-celery -A app.celery beat --loglevel=INFO --detach --pidfile=''
+celery -A app.celeryconf beat --loglevel=INFO --detach --pidfile=''
 
 flask run --eager-loading
