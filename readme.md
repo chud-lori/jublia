@@ -30,6 +30,7 @@ Set for development mode
 
 ```bash
 python manage.py create_db
+python manage.py seed_db
 ```
 
 ## Run the scheduler
