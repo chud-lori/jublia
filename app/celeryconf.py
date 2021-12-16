@@ -25,7 +25,7 @@ def make_celery(app):
         broker_url=Config.CELERY_BROKER_URL,
         broker=Config.CELERY_BROKER_URL,
         backend=Config.CELERY_RESULT_BACKEND,
-        timezone="UTC",
+        timezone="Asia/Singapore",
         task_serializer="json",
         accept_content=["json"],
         result_serializer="json",
@@ -37,8 +37,8 @@ def make_celery(app):
         abstract = True
 
         def __call__(self, *args, **kwargs):
-            with app.test_request_context():
-                g.in_celery_task = True
+            with app.app_context():
+                # g.in_celery_task = True
                 res = self.run(*args, **kwargs)
                 return res
 
