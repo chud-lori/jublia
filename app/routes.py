@@ -1,10 +1,22 @@
 from flask import Blueprint, app, json, jsonify, redirect, request
-from app import db, redis_db
+from app import db, redis_db, mail
 from app.models import *
 from sqlalchemy import text, cast, Date, func
+from flask_mail import Message
 from datetime import datetime, date
 
 app_bp = Blueprint("app_bp", __name__)
+
+@app_bp.route("/send", methods=["GET"])
+def send():
+    msg = Message("This is jubject", sender=("Lori YEAY", "lori@ganteng.com"), recipients=['ismi@mail.com', 'kamelia@mail.com'])
+    msg.body = "Hello there :)"
+    # try:
+    mail.send(msg)
+    # except:
+    return "sent"
+
+
 
 @app_bp.route("/save_emails", methods=["POST"])
 def post_email():
